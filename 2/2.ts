@@ -2499,7 +2499,7 @@ A Y
 C Z
 A Y`;
 
-enum Plays {
+export enum Play {
     Rock = 'A',
     Paper = 'B',
     Scissors = 'C',
@@ -2519,12 +2519,12 @@ const getScoreOfOutcome = (match: string[]): number => {
     const matchTranslated: string[] = [match[0], translateMyPlays(match[1])];
     switch (true) {
         case matchTranslated[0] === matchTranslated[1]: return 3;
-        case matchTranslated[0] === Plays.Rock && matchTranslated[1] === Plays.Scissors: return 0;
-        case matchTranslated[0] === Plays.Paper && matchTranslated[1] === Plays.Rock: return 0;
-        case matchTranslated[0] === Plays.Scissors && matchTranslated[1] === Plays.Paper: return 0;
-        case matchTranslated[0] === Plays.Rock && matchTranslated[1] === Plays.Paper: return 6;
-        case matchTranslated[0] === Plays.Paper && matchTranslated[1] === Plays.Scissors: return 6;
-        case matchTranslated[0] === Plays.Scissors && matchTranslated[1] === Plays.Rock: return 6;
+        case matchTranslated[0] === Play.Rock && matchTranslated[1] === Play.Scissors: return 0;
+        case matchTranslated[0] === Play.Paper && matchTranslated[1] === Play.Rock: return 0;
+        case matchTranslated[0] === Play.Scissors && matchTranslated[1] === Play.Paper: return 0;
+        case matchTranslated[0] === Play.Rock && matchTranslated[1] === Play.Paper: return 6;
+        case matchTranslated[0] === Play.Paper && matchTranslated[1] === Play.Scissors: return 6;
+        case matchTranslated[0] === Play.Scissors && matchTranslated[1] === Play.Rock: return 6;
         default: return 0;
     }
 };
@@ -2536,19 +2536,17 @@ const getTotalScoreOfMatch = (match: string[]): number => {
     return score;
 };
 
-const translateMyPlays = (play: string) : Plays => {
+export const translateMyPlays = (play: string) : Play => {
     switch (play) {
-        case 'X': return Plays.Rock;
-        case 'Y': return Plays.Paper;
-        case 'Z': return Plays.Scissors;
-        default: return Plays.default;
+        case 'X': return Play.Rock;
+        case 'Y': return Play.Paper;
+        case 'Z': return Play.Scissors;
+        default: return Play.default;
     }
 };
 
-const matches = input2.split('\n').map(match => match.split(' '));
+export const matches = input2.split('\n').map(match => match.split(' '));
 
 const allMatchesScores = matches.map(match => getTotalScoreOfMatch(match));
 
 const totalScore = allMatchesScores.reduce((a, b) => a + b, 0);
-
-console.log(totalScore);
