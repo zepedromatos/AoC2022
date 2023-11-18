@@ -2507,7 +2507,7 @@ var Play;
     Play["Paper"] = "B";
     Play["Scissors"] = "C";
     Play["default"] = "";
-})(Play = exports.Play || (exports.Play = {}));
+})(Play || (exports.Play = Play = {}));
 ;
 const getScoreOfMyShape = (shape) => {
     switch (shape) {
